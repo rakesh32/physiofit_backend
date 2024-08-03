@@ -1,10 +1,12 @@
-import mongoose from "mongoose";
-
-export const connectToDB = async () => {
+const mongoose = require('mongoose')
+const envVars = require('../config/constants')
+const connectToDB = async () => {
     try{
-        mongoose.connect('mongodb://127.0.0.1:27017/hospital');
+        mongoose.connect(envVars.mongo_uri);
         console.log("Connected To mongodb")
     }catch(e){
         console.log(e)
     }
 }
+
+module.exports = connectToDB

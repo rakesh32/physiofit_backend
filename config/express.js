@@ -1,17 +1,20 @@
-
-import express from 'express'
-import cors from 'cors';
+const express = require('express')
+const Routes = require('../routes/index.route')
+const envVars = require('../config/constants')
+const cors = require('cors')
 const app = express();
 
 const createApp = () => {
     app.use(express.json());
+    app.use(Routes)
     app.use(cors({
-        origin: ["http://192.168.29.23:8081"],  // Updated port here
+        origin: [envVars.device_url],  // Updated port here
         credentials: true
     }));
     return app;
   };
+
+module.exports = createApp
+
   
 
-
-module.exports =  createApp;
